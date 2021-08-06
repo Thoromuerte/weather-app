@@ -1,0 +1,19 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app-title {
+  font-size: 96px;
+}
+
+.search-input-box {
+  border: none;
+  border-radius: 8px;
+  padding-left: 16px;
+  height: 40px;
+  outline: none;
+  font-size: 16px;
+}
