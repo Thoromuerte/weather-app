@@ -12,6 +12,7 @@ export const App = (): JSX.Element => {
   const searchWeather = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
+    // eslint-disable-next-line no-console
     console.log(text);
   };
 
