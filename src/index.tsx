@@ -1,14 +1,25 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { App } from './components/App';
+import { IndexPage } from './pages/IndexPage';
+import { WeatherPage } from './pages/WeatherPage';
 
 import './design/reset.css';
 import './design/global.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <IndexPage />
+        </Route>
+        <Route path="/:city">
+          <WeatherPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
