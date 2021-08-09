@@ -1,7 +1,7 @@
 .weather-page {
   display: flex;
   flex-direction: column;
-  padding: 20px 80px;
+  padding: 80px;
   max-height: 100%;
 }
 
@@ -11,15 +11,9 @@
 }
 
 /* TOP LEFT */
-
-.top-left {
-  margin-top: 60px;
-}
-
 .time-date {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
   padding-bottom: 10px;
 }
 
@@ -34,7 +28,6 @@
 }
 
 .todo-list {
-  padding-left: 20px;
   padding-top: 20px;
 }
 
@@ -109,7 +102,7 @@
 .day {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border-radius: 8px;
   height: 150px;
   width: 120px;
   text-align: center;
