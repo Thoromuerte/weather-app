@@ -62,7 +62,6 @@
 .weather-icon {
   height: 100px;
   width: 100px;
-  border: 1px solid black;
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -120,7 +119,6 @@
 }
 
 .day-weather-icon {
-  border: 1px solid black;
   height: 80px;
   width: 80px;
   margin-left: auto;
