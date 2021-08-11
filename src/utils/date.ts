@@ -29,8 +29,20 @@ export const getTime = (): string => {
   return `${hours}:${minutes}`;
 };
 
-const getFullDate = () => {
+interface FullDate {
+  time: string;
+  weekday: string;
+  month: string;
+  year: number;
+  day: number;
+}
+
+export const getFullDate = (): FullDate => {
   return {
     time: getTime(),
+    weekday: getCurrentDate('weekday'),
+    month: getCurrentDate('month'),
+    year: getCurrentYear(),
+    day: getCurrentDay(),
   };
 };

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  getTime, getCurrentDate, getCurrentDay, getCurrentYear,
-} from '../../utils/date';
+import { getFullDate } from '../../utils/date';
 
 import sunIconPath from '../../assets/icons/wi-day-sunny.svg';
 import cloudIconPath from '../../assets/icons/wi-cloud.svg';
@@ -13,6 +11,15 @@ import './weatherPage.css';
 
 export const WeatherPage = (): JSX.Element => {
   const params = useParams<{ city: string }>();
+  const [fullDate, setFullDate] = React.useState(getFullDate());
+
+  React.useEffect(() => {
+    const checkTime = window.setInterval(() => setFullDate(getFullDate()), 10000);
+
+    return () => {
+      clearInterval(checkTime);
+    };
+  }, []);
 
   // eslint-disable-next-line no-console
   console.log(params);
@@ -23,9 +30,9 @@ export const WeatherPage = (): JSX.Element => {
       <div className="weather-page-top">
         <div className="top-left">
           <div className="time-date">
-            <span className="time">{getTime()}</span>
+            <span className="time">{fullDate.time}</span>
             <span className="date">
-              {getCurrentDate('weekday')}, {getCurrentDay()} {getCurrentDate('month')} {getCurrentYear()}
+              {fullDate.weekday}, {fullDate.day} {fullDate.month} {fullDate.year}
             </span>
           </div>
           <div className="todo-list">
