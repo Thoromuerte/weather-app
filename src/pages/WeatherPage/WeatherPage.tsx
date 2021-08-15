@@ -17,10 +17,10 @@ export const WeatherPage = (): JSX.Element => {
   const [weather, setWeather] = React.useState<Weather>();
 
   React.useEffect(() => {
-    fetch('https://wttr.in/Moscow?format=j1')
+    fetch(`https://wttr.in/${params.city}?format=j1`)
       .then((responce) => responce.json())
       .then((json: Weather) => setWeather(json));
-  }, []);
+  }, [params.city]);
 
   React.useEffect(() => {
     const checkTime = window.setInterval(() => setFullDate(getFullDate()), 10000);
@@ -57,7 +57,7 @@ export const WeatherPage = (): JSX.Element => {
           <img src={moonIconPath} alt="weather" className="weather-icon" />
           <span className="weather-state">Clear Sky</span>
           <span className="location">{params.city}</span>
-          <span className="temperature">16°</span>
+          <span className="temperature">{weather?.current_condition[0].temp_C}°</span>
         </div>
       </div>
       {/* <div className="weather-page-bottom"> */}
