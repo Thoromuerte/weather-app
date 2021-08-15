@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { getFullDate } from '../../utils/date';
+import { Weather } from '../../services/api';
 
 import sunIconPath from '../../assets/icons/wi-day-sunny.svg';
 import cloudIconPath from '../../assets/icons/wi-cloud.svg';
@@ -12,10 +14,16 @@ import './weatherPage.css';
 export const WeatherPage = (): JSX.Element => {
   const params = useParams<{ city: string }>();
   const [fullDate, setFullDate] = React.useState(getFullDate());
+  const [weather, setWeather] = React.useState<Weather>();
+
+  React.useEffect(() => {
+    fetch('https://wttr.in/Moscow?format=j1')
+      .then((responce) => responce.json())
+      .then((json: Weather) => setWeather(json));
+  }, []);
 
   React.useEffect(() => {
     const checkTime = window.setInterval(() => setFullDate(getFullDate()), 10000);
-
     return () => {
       clearInterval(checkTime);
     };
