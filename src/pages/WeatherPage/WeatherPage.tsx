@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { getFullDate } from '../../utils/date';
@@ -19,7 +18,8 @@ export const WeatherPage = (): JSX.Element => {
   React.useEffect(() => {
     fetch(`https://wttr.in/${params.city}?format=j1`)
       .then((responce) => responce.json())
-      .then((json: Weather) => setWeather(json));
+      .then((json: Weather) => setWeather(json))
+      .catch((error) => console.log(error));
   }, [params.city]);
 
   React.useEffect(() => {
@@ -55,8 +55,10 @@ export const WeatherPage = (): JSX.Element => {
         </div>
         <div className="city-weather">
           <img src={moonIconPath} alt="weather" className="weather-icon" />
-          <span className="weather-state">Clear Sky</span>
-          <span className="location">{weather?.nearest_area[0].region[0].value}, {weather?.nearest_area[0].country[0].value}</span>
+          <span className="weather-state">{weather?.current_condition[0].weatherDesc[0].value}</span>
+          <span className="location">
+            {weather?.nearest_area[0].region[0].value}, {weather?.nearest_area[0].country[0].value}
+          </span>
           <span className="temperature">{weather?.current_condition[0].temp_C}°</span>
         </div>
       </div>
