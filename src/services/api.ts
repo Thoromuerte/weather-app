@@ -1,6 +1,7 @@
 export interface Weather {
   current_condition: [Condition];
   nearest_area: [Area];
+  weather: Array<DailyWeather>;
 }
 
 interface Condition {
@@ -35,4 +36,26 @@ interface Area {
   longitude: string;
   population: string;
   region: [{ value: string }];
+}
+
+interface DailyWeather {
+  astronomy: string[];
+  avgtempC: string;
+  avgtempF: string;
+  date: string;
+  hourly: HourlyCondition[];
+  maxtempC: string;
+  maxtempF: string;
+  mintempC: string;
+  mintempF: string;
+  sunHour: string;
+  totalSnow_cm: string;
+  uvIndex: string;
+}
+
+interface HourlyCondition {
+  tempC: string;
+  tempF: string;
+  weatherCode: string;
+  weatherDesc: [{ value: string }];
 }

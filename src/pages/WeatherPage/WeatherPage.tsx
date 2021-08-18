@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { getFullDate } from '../../utils/date';
 import { Weather } from '../../services/api';
 
-import sunIconPath from '../../assets/icons/wi-day-sunny.svg';
-import cloudIconPath from '../../assets/icons/wi-cloud.svg';
-import fogIconPath from '../../assets/icons/wi-day-fog.svg';
+// import sunIconPath from '../../assets/icons/wi-day-sunny.svg';
+// import cloudIconPath from '../../assets/icons/wi-cloud.svg';
+// import fogIconPath from '../../assets/icons/wi-day-fog.svg';
 import moonIconPath from '../../assets/icons/wi-night-clear.svg';
 
 import './weatherPage.css';
@@ -18,7 +19,10 @@ export const WeatherPage = (): JSX.Element => {
   React.useEffect(() => {
     fetch(`https://wttr.in/${params.city}?format=j1`)
       .then((responce) => responce.json())
-      .then((json: Weather) => setWeather(json))
+      .then((json: Weather) => {
+        setWeather(json);
+        console.log(json.weather);
+      })
       .catch((error) => console.log(error));
   }, [params.city]);
 
@@ -29,10 +33,8 @@ export const WeatherPage = (): JSX.Element => {
     };
   }, []);
 
-  // eslint-disable-next-line no-console
   console.log(params);
 
-  // {params.city}
   return (
     <div className="weather-page">
       <div className="weather-page-top">
@@ -62,45 +64,15 @@ export const WeatherPage = (): JSX.Element => {
           <span className="temperature">{weather?.current_condition[0].temp_C}°</span>
         </div>
       </div>
-      {/* <div className="weather-page-bottom"> */}
       <div className="weekline">
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={moonIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={cloudIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={fogIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={sunIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={cloudIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={sunIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
-        <div className="day">
-          <span className="weekday">TODAY</span>
-          <img src={sunIconPath} alt="weather" className="day-weather-icon" />
-          <span className="day-temperature">21</span>
-        </div>
+        {weather?.weather[0].hourly.map((hourlyWeather) => (
+          <div className="day">
+            <span className="weekday">TODAY</span>
+            <img src={moonIconPath} alt="weather" className="day-weather-icon" />
+            <span className="day-temperature">{hourlyWeather.tempC}</span>
+          </div>
+        ))}
       </div>
-      {/* </div> */}
     </div>
   );
 };
