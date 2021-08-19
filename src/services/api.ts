@@ -58,4 +58,5 @@ interface HourlyCondition {
   tempF: string;
   weatherCode: string;
   weatherDesc: [{ value: string }];
+  time: string;
 }

@@ -1,13 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-console */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { getFullDate } from '../../utils/date';
 import { Weather } from '../../services/api';
-
-// import sunIconPath from '../../assets/icons/wi-day-sunny.svg';
-// import cloudIconPath from '../../assets/icons/wi-cloud.svg';
-// import fogIconPath from '../../assets/icons/wi-day-fog.svg';
-import moonIconPath from '../../assets/icons/wi-night-clear.svg';
+import { iconCodes } from '../../assets/IconCodes/IconCodes';
 
 import './weatherPage.css';
 
@@ -24,7 +21,7 @@ export const WeatherPage = (): JSX.Element => {
         console.log(json.weather);
       })
       .catch((error) => console.log(error));
-  }, [params.city]);
+  });
 
   React.useEffect(() => {
     const checkTime = window.setInterval(() => setFullDate(getFullDate()), 10000);
@@ -56,7 +53,11 @@ export const WeatherPage = (): JSX.Element => {
           </div>
         </div>
         <div className="city-weather">
-          <img src={moonIconPath} alt="weather" className="weather-icon" />
+          <img
+            src={iconCodes[Number(weather?.current_condition[0].weatherCode)]}
+            alt="weather"
+            className="weather-icon"
+          />
           <span className="weather-state">{weather?.current_condition[0].weatherDesc[0].value}</span>
           <span className="location">
             {weather?.nearest_area[0].region[0].value}, {weather?.nearest_area[0].country[0].value}
@@ -66,9 +67,9 @@ export const WeatherPage = (): JSX.Element => {
       </div>
       <div className="weekline">
         {weather?.weather[0].hourly.map((hourlyWeather) => (
-          <div className="day">
+          <div key={hourlyWeather.time} className="day">
             <span className="weekday">TODAY</span>
-            <img src={moonIconPath} alt="weather" className="day-weather-icon" />
+            <img src={iconCodes[Number(hourlyWeather.weatherCode)]} alt="weather" className="day-weather-icon" />
             <span className="day-temperature">{hourlyWeather.tempC}</span>
           </div>
         ))}
