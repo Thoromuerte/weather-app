@@ -21,7 +21,7 @@ export const WeatherPage = (): JSX.Element => {
         console.log(json.weather);
       })
       .catch((error) => console.log(error));
-  });
+  }, [params.city]);
 
   React.useEffect(() => {
     const checkTime = window.setInterval(() => setFullDate(getFullDate()), 10000);
