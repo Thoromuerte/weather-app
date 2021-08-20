@@ -46,3 +46,14 @@ export const getFullDate = (): FullDate => {
     day: getCurrentDay(),
   };
 };
+
+export const hourlyTime: Record<number, string> = {
+  0: '00:00',
+  300: '03:00',
+  600: '06:00',
+  900: '09:00',
+  1200: '12:00',
+  1500: '15:00',
+  1800: '18:00',
+  2100: '21:00',
+};

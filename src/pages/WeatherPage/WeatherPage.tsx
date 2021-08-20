@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import { getFullDate } from '../../utils/date';
+import { getFullDate, hourlyTime } from '../../utils/date';
 import { Weather } from '../../services/api';
 import { iconCodes } from '../../assets/IconCodes/IconCodes';
 
@@ -68,7 +68,7 @@ export const WeatherPage = (): JSX.Element => {
       <div className="weekline">
         {weather?.weather[0].hourly.map((hourlyWeather) => (
           <div key={hourlyWeather.time} className="day">
-            <span className="weekday">TODAY</span>
+            <span className="weekday">{hourlyTime[Number(hourlyWeather.time)]}</span>
             <img src={iconCodes[Number(hourlyWeather.weatherCode)]} alt="weather" className="day-weather-icon" />
             <span className="day-temperature">{hourlyWeather.tempC}</span>
           </div>
