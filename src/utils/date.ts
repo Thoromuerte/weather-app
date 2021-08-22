@@ -20,8 +20,8 @@ export const getCurrentDate = (name: string): string => {
   return dateFormat.format(date);
 };
 
-export const getTime = (): string => {
-  const parsedDate = new Date();
+export const getTime = (time: string | Date): string => {
+  const parsedDate = new Date(time);
 
   const hours = `${parsedDate.getHours() < 10 ? '0' : ''}${parsedDate.getHours()}`;
   const minutes = `${parsedDate.getMinutes() < 10 ? '0' : ''}${parsedDate.getMinutes()}`;
@@ -39,7 +39,7 @@ interface FullDate {
 
 export const getFullDate = (): FullDate => {
   return {
-    time: getTime(),
+    time: getTime(new Date()),
     weekday: getCurrentDate('weekday'),
     month: getCurrentDate('month'),
     year: getCurrentYear(),
@@ -47,13 +47,13 @@ export const getFullDate = (): FullDate => {
   };
 };
 
-export const hourlyTime: Record<number, string> = {
-  0: '00:00',
-  300: '03:00',
-  600: '06:00',
-  900: '09:00',
-  1200: '12:00',
-  1500: '15:00',
-  1800: '18:00',
-  2100: '21:00',
-};
+// export const hourlyTime: Record<number, string> = {
+//   0: '00:00',
+//   300: '03:00',
+//   600: '06:00',
+//   900: '09:00',
+//   1200: '12:00',
+//   1500: '15:00',
+//   1800: '18:00',
+//   2100: '21:00',
+// };

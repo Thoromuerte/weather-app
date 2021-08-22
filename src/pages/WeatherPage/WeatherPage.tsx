@@ -2,9 +2,10 @@
 /* eslint-disable no-console */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import { getFullDate, hourlyTime } from '../../utils/date';
+import { getFullDate, getTime } from '../../utils/date';
 import { Weather } from '../../services/api';
 import { iconCodes } from '../../assets/IconCodes/IconCodes';
+import { filterHourlyWeatherBasedOnCurrentTime } from '../../utils/filteredDate';
 
 import './weatherPage.css';
 
@@ -31,6 +32,8 @@ export const WeatherPage = (): JSX.Element => {
   }, []);
 
   console.log(params);
+
+  const hourlyWeather = filterHourlyWeatherBasedOnCurrentTime(weather?.weather ?? []);
 
   return (
     <div className="weather-page">
@@ -66,11 +69,11 @@ export const WeatherPage = (): JSX.Element => {
         </div>
       </div>
       <div className="weekline">
-        {weather?.weather[0].hourly.map((hourlyWeather) => (
-          <div key={hourlyWeather.time} className="day">
-            <span className="weekday">{hourlyTime[Number(hourlyWeather.time)]}</span>
-            <img src={iconCodes[Number(hourlyWeather.weatherCode)]} alt="weather" className="day-weather-icon" />
-            <span className="day-temperature">{hourlyWeather.tempC}</span>
+        {hourlyWeather.map((item) => (
+          <div className="day">
+            <span className="weekday">{getTime(item.time)}</span>
+            <img src={iconCodes[Number(item.weatherCode)]} alt="weather" className="day-weather-icon" />
+            <span className="day-temperature">{item.tempC}</span>
           </div>
         ))}
       </div>

@@ -38,7 +38,7 @@ interface Area {
   region: [{ value: string }];
 }
 
-interface DailyWeather {
+export interface DailyWeather {
   astronomy: string[];
   avgtempC: string;
   avgtempF: string;
@@ -53,10 +53,10 @@ interface DailyWeather {
   uvIndex: string;
 }
 
-interface HourlyCondition {
+export interface HourlyCondition {
   tempC: string;
   tempF: string;
   weatherCode: string;
   weatherDesc: [{ value: string }];
-  time: string;
+  time: string | Date;
 }
