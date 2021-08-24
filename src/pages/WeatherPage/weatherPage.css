@@ -91,11 +91,18 @@
 
 .weekline {
   display: flex;
-  /* width: 100%; */
   justify-content: center;
   margin-top: 350px;
   margin-left: 15%;
   margin-right: 15%;
+
+}
+
+@media (max-width: 1024px) {
+  .weekline{
+    overflow: auto;
+    justify-content: flex-start;
+  }
 }
 
 .day {
