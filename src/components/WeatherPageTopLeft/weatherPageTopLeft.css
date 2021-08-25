@@ -1,0 +1,39 @@
+.time-date {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.time {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.date {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.todo-list {
+  padding-top: 20px;
+}
+
+.button-next {
+  margin-bottom: 16px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 400;
+  padding-left: 0px;
+}
+
+.item-time {
+  font-weight: 400;
+}
+
+.item-text {
+  margin-left: 10px;
+  font-weight: 600;
+}

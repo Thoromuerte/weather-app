@@ -1,0 +1,29 @@
+.city-weather {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.weather-icon {
+  height: 100px;
+  width: 100px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-state {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.location {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.temperature {
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: 600;
+}

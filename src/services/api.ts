@@ -1,7 +1,7 @@
 export interface Weather {
   current_condition: [Condition];
   nearest_area: [Area];
-  weather: Array<DailyWeather>;
+  weather: DailyWeather[];
 }
 
 interface Condition {

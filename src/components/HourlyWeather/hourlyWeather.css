@@ -1,0 +1,51 @@
+.hourly-list {
+  display: flex;
+  justify-content: center;
+  margin-top: 350px;
+  margin-left: 15%;
+  margin-right: 15%;
+
+}
+
+@media (max-width: 1024px) {
+  .hourly-list{
+    overflow: auto;
+    justify-content: flex-start;
+  }
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  height: 150px;
+  width: 120px;
+  text-align: center;
+}
+
+.hours:hover {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+}
+
+.hours-time {
+  padding-top: 12px;
+  padding-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hourly-weather-icon {
+  height: 80px;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hourly-temperature {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+}

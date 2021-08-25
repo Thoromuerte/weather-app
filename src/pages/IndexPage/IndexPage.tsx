@@ -15,8 +15,6 @@ export const IndexPage = (): JSX.Element => {
     event.preventDefault();
 
     history.push(`/${text}`);
-    // eslint-disable-next-line no-console
-    console.log(text);
   };
 
   return (
