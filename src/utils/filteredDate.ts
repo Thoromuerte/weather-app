@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { HourlyCondition, DailyWeather } from '../services/api';
+import { HourlyCondition, DailyWeather } from '../services/weather.service';
 
 const HOURLY_WEATHER_INTERVAL = 1000 * 60 * 60 * 3;
 

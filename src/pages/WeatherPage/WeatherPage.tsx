@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-indent-props */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { WeatherPageTopLeft } from '../../components/WeatherPageTopLeft/WeatherPageTopLeft';
 import { filterHourlyWeatherBasedOnCurrentTime } from '../../utils/filteredDate';
-import { Weather } from '../../services/api';
+import { fetchWeather, ChangedDataForWeather } from '../../services/weather.service';
 import { LocationWeather } from '../../components/LocationWeather/LocationWeather';
 
 import { ICON_CODES } from '../../constants/weatherCodes';
@@ -15,12 +14,11 @@ import { HourlyWeather } from '../../components/HourlyWeather/HourlyWeather';
 export const WeatherPage = (): JSX.Element => {
   const params = useParams<{ city: string }>();
 
-  const [weather, setWeather] = React.useState<Weather>();
+  const [weather, setWeather] = React.useState<ChangedDataForWeather>();
 
   React.useEffect(() => {
-    fetch(`https://wttr.in/${params.city}?format=j1`)
-      .then((response) => response.json())
-      .then((json: Weather) => setWeather(json))
+    fetchWeather(params.city)
+      .then((data) => setWeather(data))
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error));
   }, [params.city]);
@@ -32,20 +30,19 @@ export const WeatherPage = (): JSX.Element => {
       <div className="weather-page-top">
         <WeatherPageTopLeft />
         <LocationWeather
-        region={weather?.nearest_area[0].region[0].value}
-        country={weather?.nearest_area[0].country[0].value}
-        temperature={weather?.current_condition[0].temp_C}
-        weatherDesc={weather?.current_condition[0].weatherDesc[0].value}
-        iconPath={ICON_CODES[weather?.current_condition[0].weatherCode ?? '113']}
+          location={weather?.location}
+          temperature={weather?.temperature}
+          weatherDesc={weather?.weatherDesc}
+          iconPath={weather?.icon ? ICON_CODES[weather?.icon] : undefined}
         />
       </div>
       <div className="hourly-list">
         {hourlyWeather.map((item) => (
           <HourlyWeather
-          key={item.time.toString()}
-          hourlytime={item.time as Date}
-          iconPath={ICON_CODES[item.weatherCode]}
-          temperature={item.tempC}
+            key={item.time.toString()}
+            hourlytime={item.time as Date}
+            iconPath={ICON_CODES[item.weatherCode]}
+            temperature={item.tempC}
           />
         ))}
       </div>

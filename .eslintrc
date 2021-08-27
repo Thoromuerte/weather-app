@@ -25,6 +25,7 @@
     "react/react-in-jsx-scope": "off",
     "arrow-body-style": "off",
     "react/self-closing-comp": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "react/require-default-props": "off"
   }
 }

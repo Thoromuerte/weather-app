@@ -60,3 +60,29 @@ export interface HourlyCondition {
   weatherDesc: [{ value: string }];
   time: string | Date;
 }
+
+export interface ChangedDataForWeather {
+  location?: string;
+  icon: string;
+  temperature: string;
+  weatherDesc: string;
+  weather: DailyWeather[];
+}
+
+const changeData = (data:Weather): ChangedDataForWeather => {
+  const loc = `${data.nearest_area[0].region[0].value}, ${data.nearest_area[0].country[0].value}`;
+  return {
+    location: loc,
+    icon: data.current_condition[0].weatherCode,
+    temperature: data.current_condition[0].temp_C,
+    weatherDesc: data.current_condition[0].weatherDesc[0].value,
+    weather: [],
+  };
+};
+
+export const fetchWeather = async (city: string): Promise<ChangedDataForWeather> => {
+  const response = await fetch(`https://wttr.in/${city}?format=j1`);
+  const commits = await response.json() as Weather;
+  const data = changeData(commits);
+  return data;
+};
