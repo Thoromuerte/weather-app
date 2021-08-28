@@ -18,13 +18,15 @@ export const LocationWeather = (props: LocationWeatherProps): JSX.Element => {
 
   return (
     <div className="city-weather">
-      {iconPath ? <img src={iconPath} alt="weather" className="weather-icon" /> : <Skeleton width="100px" height="100px" /> }
-      <span className="weather-state">{weatherDesc ?? <Skeleton width="200px" />}
+      <div className="icon-location">
+        {iconPath ? <img src={iconPath} alt="weather" className="weather-icon" /> : <Skeleton width="100px" height="100px" /> }
+      </div>
+      <span className="weather-state">{weatherDesc ?? <Skeleton width="200px" height="55px" />}
       </span>
       <span className="location">
         {location ?? <Skeleton width="200px" /> }
       </span>
-      <span className="temperature"> {temperature ? (<span>{temperature}°</span>) : <Skeleton /> } </span>
+      <span className="temperature"> {temperature ? (<span>{temperature}°</span>) : <Skeleton width="80px" height="55px" /> } </span>
     </div>
   );
 };

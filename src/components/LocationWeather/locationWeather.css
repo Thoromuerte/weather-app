@@ -4,6 +4,11 @@
   text-align: right;
 }
 
+.icon-location {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .weather-icon {
   height: 100px;
   width: 100px;
@@ -16,6 +21,7 @@
 .weather-state {
   font-size: 40px;
   font-weight: 600;
+  margin-top: 8px;
 }
 
 .location {
@@ -27,4 +33,6 @@
   margin-top: 20px;
   font-size: 40px;
   font-weight: 600;
+  display: flex;
+  justify-content: flex-end;
 }

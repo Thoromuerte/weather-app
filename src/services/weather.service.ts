@@ -76,7 +76,7 @@ const changeData = (data:Weather): ChangedDataForWeather => {
     icon: data.current_condition[0].weatherCode,
     temperature: data.current_condition[0].temp_C,
     weatherDesc: data.current_condition[0].weatherDesc[0].value,
-    weather: [],
+    weather: data.weather,
   };
 };
 
