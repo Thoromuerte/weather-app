@@ -2,9 +2,6 @@
   display: flex;
   justify-content: center;
   margin-top: auto;
-  margin-left: 15%;
-  margin-right: 15%;
-
 }
 
 @media (max-width: 1024px) {

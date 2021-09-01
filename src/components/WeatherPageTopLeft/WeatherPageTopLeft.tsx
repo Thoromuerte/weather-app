@@ -9,14 +9,44 @@ export interface Todo {
   text: string;
 }
 
-export interface DateTodoProps {
-  todo: Todo[];
-}
-
-export const DateTodo = (props: DateTodoProps): JSX.Element => {
-  const { todo } = props;
+const temporalTodo: Todo[] = [
+  {
+    time: '11:00',
+    text: 'Созвон',
+  },
+  {
+    time: '13:00',
+    text: 'Обед, покормить кота',
+  },
+  {
+    time: '14:00',
+    text: 'Дейлики в Геншине',
+  },
+  {
+    time: '14:30',
+    text: 'Крутануть гачу',
+  },
+  {
+    time: '14:35',
+    text: 'Поплакать',
+  },
+  {
+    time: '15:00',
+    text: 'Таски',
+  },
+  {
+    time: '18:00',
+    text: 'Зайти в Дискорд',
+  },
+  {
+    time: '18:30',
+    text: 'Выйти из Дискорда',
+  },
+];
+export const DateTodo = (): JSX.Element => {
   const [date, setDate] = React.useState(new Date());
-  const [count, setCount] = React.useState(0);
+  const [todos, setTodos] = React.useState(temporalTodo);
+  const [step, setStep] = React.useState(0);
 
   React.useEffect(() => {
     const checkTime = window.setInterval(() => setDate(new Date()), 10000);
@@ -24,13 +54,9 @@ export const DateTodo = (props: DateTodoProps): JSX.Element => {
     return () => clearInterval(checkTime);
   }, []);
 
-  const countIncrease = () => {
-    const increasedCount = count + 1;
-    setCount(increasedCount);
-  };
-
-  const filterTodoList = (dataTodo: Todo[]): Todo[] => {
-    return [dataTodo[count] ?? { time: '&', text: '' }, dataTodo[count + 1] ?? { time: '', text: '' }];
+  const NextTodo = () => {
+    setStep((prevStep) => prevStep + 1);
+    setTodos(todos);
   };
 
   return (
@@ -42,30 +68,17 @@ export const DateTodo = (props: DateTodoProps): JSX.Element => {
         </span>
       </div>
       <div className="todo-container">
-        {count === todo.length ? (
-          <button type="button" className="button-next">
-            ADD NEW TASK
-          </button>
-        ) : (
-          <div>
-            <button type="button" className="button-next" onClick={countIncrease}>
-              NEXT
-            </button>
-            <button type="button" className="button-next">
-              ADD NEW TASK
-            </button>
+        <button type="button" className="button-next" onClick={NextTodo}>
+          Next task
+        </button>
+        {todos.slice(step, step + 2).map((todo) => (
+          <div className="todo-item">
+            <span className="item-time">{todo.time}</span>
+            <span className="item-text">{todo.text}</span>
           </div>
-        )}
-        <div className="todo-list">
-          {filterTodoList(todo).map((dataTodo) => {
-            return (
-              <div className="todo-item">
-                <span className="item-time">{dataTodo.time === '&' ? 'На сегодня планов нет' : dataTodo.time}</span>
-                <span className="item-text">{dataTodo.text ?? ''}</span>
-              </div>
-            );
-          })}
-        </div>
+        ))}
+        {todos.length === step && <span className="item-text">Сегодня планов нет</span>}
+        <div className="todo-item">{}</div>
       </div>
     </div>
   );
