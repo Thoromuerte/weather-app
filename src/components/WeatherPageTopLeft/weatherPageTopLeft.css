@@ -26,7 +26,8 @@
   color: white;
   cursor: pointer;
   font-weight: 400;
-  padding-left: 0px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+  margin-right: 8px;
 }
 
 .item-time {
