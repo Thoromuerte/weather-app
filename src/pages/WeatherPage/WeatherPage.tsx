@@ -1,15 +1,50 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { WeatherPageTopLeft } from '../../components/WeatherPageTopLeft/WeatherPageTopLeft';
+import { DateTodo, Todo } from '../../components/WeatherPageTopLeft/WeatherPageTopLeft';
 import { filterHourlyWeatherBasedOnCurrentTime } from '../../utils/filteredDate';
 import { fetchWeather, ChangedDataForWeather } from '../../services/weather.service';
 import { LocationWeather } from '../../components/LocationWeather/LocationWeather';
+import { HourlyWeather } from '../../components/HourlyWeather/HourlyWeather';
 
 import { ICON_CODES } from '../../constants/weatherCodes';
 
 import './weatherPage.css';
-import { HourlyWeather } from '../../components/HourlyWeather/HourlyWeather';
+
+const temporalTodo: Todo[] = [
+  {
+    time: '11:00',
+    text: 'Созвон',
+  },
+  {
+    time: '13:00',
+    text: 'Обед, покормить кота',
+  },
+  {
+    time: '14:00',
+    text: 'Дейлики в Геншине',
+  },
+  {
+    time: '14:30',
+    text: 'Крутануть гачу',
+  },
+  {
+    time: '14:35',
+    text: 'Поплакать',
+  },
+  {
+    time: '15:00',
+    text: 'Таски',
+  },
+  {
+    time: '18:00',
+    text: 'Зайти в Дискорд',
+  },
+  {
+    time: '18:30',
+    text: 'Выйти из Дискорда',
+  },
+];
 
 export const WeatherPage = (): JSX.Element => {
   const params = useParams<{ city: string }>();
@@ -28,7 +63,7 @@ export const WeatherPage = (): JSX.Element => {
   return (
     <div className="weather-page">
       <div className="weather-page-top">
-        <WeatherPageTopLeft />
+        <DateTodo todo={temporalTodo} />
         <LocationWeather
           location={weather?.location}
           temperature={weather?.temperature}
