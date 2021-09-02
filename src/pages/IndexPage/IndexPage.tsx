@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import './indexPage.css';
+import styles from './indexPage.module.css';
 
 export const IndexPage = (): JSX.Element => {
   const history = useHistory();
@@ -18,13 +18,13 @@ export const IndexPage = (): JSX.Element => {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={searchWeather} className="search-container">
-        <h1 className="app-title">weather-app</h1>
+    <div className={styles.container}>
+      <form onSubmit={searchWeather} className={styles['search-container']}>
+        <h1 className={styles['app-title']}>weather-app</h1>
         <input
           value={text}
           onChange={changeText}
-          className="search-input-box"
+          className={styles['search-input-box']}
           type="text"
           placeholder="City, Country"
         />

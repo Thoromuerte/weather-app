@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { getCurrentDate, getTime } from '../../utils/date';
 
-import './weatherPageTopLeft.css';
+import styles from './dateTodo.module.css';
 
 export interface Todo {
   time: string;
@@ -60,25 +60,25 @@ export const DateTodo = (): JSX.Element => {
   };
 
   return (
-    <div className="top-left">
-      <div className="time-date">
-        <span className="time">{getTime(date)}</span>
-        <span className="date">
+    <div className={styles['top-left']}>
+      <div className={styles['time-date']}>
+        <span className={styles.time}>{getTime(date)}</span>
+        <span className={styles.date}>
           {getCurrentDate('weekday')}, {date.getDate()} {getCurrentDate('month')} {date.getFullYear()}
         </span>
       </div>
-      <div className="todo-container">
-        <button type="button" className="button-next" onClick={NextTodo}>
+      <div className={styles['todo-container']}>
+        <button type="button" className={styles['button-next']} onClick={NextTodo}>
           Next task
         </button>
         {todos.slice(step, step + 2).map((todo) => (
-          <div className="todo-item">
-            <span className="item-time">{todo.time}</span>
-            <span className="item-text">{todo.text}</span>
+          <div className={styles['todo-item']}>
+            <span className={styles['item-time']}>{todo.time}</span>
+            <span className={styles['item-text']}>{todo.text}</span>
           </div>
         ))}
-        {todos.length === step && <span className="item-text">Сегодня планов нет</span>}
-        <div className="todo-item">{}</div>
+        {todos.length === step && <span className={styles['item-text']}>Сегодня планов нет</span>}
+        <div className={styles['todo-item']}>{}</div>
       </div>
     </div>
   );

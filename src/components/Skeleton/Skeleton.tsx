@@ -1,4 +1,4 @@
-import './skeleton.css';
+import styles from './skeleton.module.css';
 
 interface SkeletonProps {
   width?: string;
@@ -8,6 +8,6 @@ interface SkeletonProps {
 export const Skeleton = (props: SkeletonProps): JSX.Element => {
   const { width, height } = props;
   return (
-    <div style={{ width, height }} className="skeleton-text"></div>
+    <div style={{ width, height }} className={styles['skeleton-text']}></div>
   );
 };

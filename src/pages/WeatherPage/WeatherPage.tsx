@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { DateTodo } from '../../components/WeatherPageTopLeft/WeatherPageTopLeft';
+import { DateTodo } from '../../components/WeatherPageTopLeft/DateTodo';
 import { filterHourlyWeatherBasedOnCurrentTime } from '../../utils/filteredDate';
 import { fetchWeather, ChangedDataForWeather } from '../../services/weather.service';
 import { LocationWeather } from '../../components/LocationWeather/LocationWeather';
@@ -9,7 +9,7 @@ import { HourlyWeather } from '../../components/HourlyWeather/HourlyWeather';
 
 import { ICON_CODES } from '../../constants/weatherCodes';
 
-import './weatherPage.css';
+import styles from './weatherPage.module.css';
 
 export const WeatherPage = (): JSX.Element => {
   const params = useParams<{ city: string }>();
@@ -26,8 +26,8 @@ export const WeatherPage = (): JSX.Element => {
   const hourlyWeather = filterHourlyWeatherBasedOnCurrentTime(weather?.weather ?? []);
 
   return (
-    <div className="weather-page">
-      <div className="weather-page-top">
+    <div className={styles['weather-page']}>
+      <div className={styles['weather-page-top']}>
         <DateTodo />
         <LocationWeather
           location={weather?.location}
@@ -36,7 +36,7 @@ export const WeatherPage = (): JSX.Element => {
           iconPath={weather?.icon ? ICON_CODES[weather?.icon] : undefined}
         />
       </div>
-      <div className="hourly-list">
+      <div className={styles['hourly-list']}>
         {hourlyWeather.map((item) => (
           <HourlyWeather
             key={item.time.toString()}
