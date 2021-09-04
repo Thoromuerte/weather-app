@@ -4,6 +4,8 @@ import { getCurrentDate, getTime } from '../../utils/date';
 
 import styles from './dateTodo.module.css';
 
+import iconPath from '../../assets/icons/menu.svg';
+
 export interface Todo {
   time: string;
   text: string;
@@ -47,6 +49,7 @@ export const DateTodo = (): JSX.Element => {
   const [date, setDate] = React.useState(new Date());
   const [todos, setTodos] = React.useState(temporalTodo);
   const [step, setStep] = React.useState(0);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     const checkTime = window.setInterval(() => setDate(new Date()), 10000);
@@ -61,6 +64,16 @@ export const DateTodo = (): JSX.Element => {
 
   return (
     <div className={styles['top-left']}>
+      {isOpen && (
+        <div className={styles.modal}>
+          <div className={styles.shadow} />
+          <div className={styles['modal-content']}>
+            <button type="button" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div className={styles['time-date']}>
         <span className={styles.time}>{getTime(date)}</span>
         <span className={styles.date}>
@@ -68,9 +81,14 @@ export const DateTodo = (): JSX.Element => {
         </span>
       </div>
       <div className={styles['todo-container']}>
-        <button type="button" className={styles['button-next']} onClick={NextTodo}>
-          Next task
-        </button>
+        <div className={styles.menu}>
+          <button type="button" className={styles['button-next']} onClick={NextTodo}>
+            Next task
+          </button>
+          <button className={styles.open} type="button" onClick={() => setIsOpen(true)}>
+            <img src={iconPath} alt="" className={styles.menu} />
+          </button>
+        </div>
         {todos.slice(step, step + 2).map((todo) => (
           <div className={styles['todo-item']}>
             <span className={styles['item-time']}>{todo.time}</span>

@@ -16,21 +16,33 @@
 
 .todo-container {
   padding-top: 20px;
+
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
 }
 
 .button-next {
-  margin-bottom: 16px;
   border: none;
   background-color: transparent;
   outline: none;
   color: white;
-  cursor: pointer;
   font-weight: 400;
   font-size: 16px;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
   margin-right: 8px;
+  margin-bottom: 8px;
+  margin-top: 8px;
   height: 24px;
   width: 80px;
+}
+
+.open {
+  outline: none;
+  border: none;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
 }
 
 .item-time {
@@ -40,4 +52,28 @@
 .item-text {
   margin-left: 10px;
   font-weight: 600;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  z-index: 1;
+  margin: auto;
+  background-color: white;
+  padding: 24px;
 }

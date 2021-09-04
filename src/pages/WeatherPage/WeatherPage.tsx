@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { DateTodo } from '../../components/WeatherPageTopLeft/DateTodo';
+import { DateTodo } from '../../components/DateTodo/DateTodo';
 import { filterHourlyWeatherBasedOnCurrentTime } from '../../utils/filteredDate';
 import { fetchWeather, ChangedDataForWeather } from '../../services/weather.service';
 import { LocationWeather } from '../../components/LocationWeather/LocationWeather';
