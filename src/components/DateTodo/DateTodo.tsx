@@ -57,7 +57,7 @@ export const DateTodo = (): JSX.Element => {
     return () => clearInterval(checkTime);
   }, []);
 
-  const NextTodo = () => {
+  const nextTodo = () => {
     setStep((prevStep) => prevStep + 1);
     setTodos(todos);
   };
@@ -66,7 +66,7 @@ export const DateTodo = (): JSX.Element => {
     <div className={styles['top-left']}>
       {isOpen && (
         <div className={styles.modal}>
-          <div className={styles.shadow} />
+          <div className={styles.shadow} role="button" tabIndex={0} aria-label="Escape" onKeyDown={(event) => { if (event.key === 'Escape') { setIsOpen(false); } }} onClick={() => setIsOpen(false)} />
           <div className={styles['modal-content']}>
             <button type="button" onClick={() => setIsOpen(false)}>
               Close
@@ -82,7 +82,7 @@ export const DateTodo = (): JSX.Element => {
       </div>
       <div className={styles['todo-container']}>
         <div className={styles.menu}>
-          <button type="button" className={styles['button-next']} onClick={NextTodo}>
+          <button type="button" className={styles['button-next']} onClick={nextTodo}>
             Next task
           </button>
           <button className={styles.open} type="button" onClick={() => setIsOpen(true)}>
