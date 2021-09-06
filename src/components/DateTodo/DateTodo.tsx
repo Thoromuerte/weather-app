@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { getCurrentDate, getTime } from '../../utils/date';
+import { ModalTodo } from './ModalTodo/ModalTodo';
 
 import styles from './dateTodo.module.css';
 
@@ -64,16 +65,11 @@ export const DateTodo = (): JSX.Element => {
 
   return (
     <div className={styles['top-left']}>
-      {isOpen && (
+      <ModalTodo open={isOpen} onClose={() => setIsOpen(false)}>
         <div className={styles.modal}>
-          <div className={styles.shadow} role="button" tabIndex={0} aria-label="Escape" onKeyDown={(event) => { if (event.key === 'Escape') { setIsOpen(false); } }} onClick={() => setIsOpen(false)} />
-          <div className={styles['modal-content']}>
-            <button type="button" onClick={() => setIsOpen(false)}>
-              Close
-            </button>
-          </div>
+          <button type="button" onClick={() => setIsOpen(false)}>Close</button>
         </div>
-      )}
+      </ModalTodo>
       <div className={styles['time-date']}>
         <span className={styles.time}>{getTime(date)}</span>
         <span className={styles.date}>
